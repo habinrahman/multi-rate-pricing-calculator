@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="https://placehold.co/128x128/0f172a/ffffff?text=%24" alt="Multi-Rate logo placeholder" width="96" height="96" />
-
 # Multi-Rate
 
 **A financial pricing engine that treats a dollar as an integer, not a `float`.**
@@ -19,10 +17,12 @@ Deterministic, half-up rounded quote/invoice calculation with server-enforced im
 [![Vitest](https://img.shields.io/badge/tested%20with-Vitest-6E9F18?logo=vitest&logoColor=white)](https://vitest.dev/)
 [![License: Unlicensed](https://img.shields.io/badge/license-unlicensed-lightgrey.svg)](#license)
 
+<img src="docs/screenshots/07-dashboard-with-documents.png" alt="Multi-Rate dashboard showing document metrics and a finalized invoice" width="820" />
+
 </div>
 
 > [!NOTE]
-> **On screenshots and diagrams in this README:** this repository does not yet contain committed screenshots, GIFs, or a logo asset — the images above are placeholders. Every diagram below is a real [Mermaid](https://mermaid.js.org/) rendering of the actual request/data flow in the codebase, not a mockup. See [§22 Screenshots](#22-screenshots) for how to add real captures.
+> Every screenshot in this README (§19) is a real capture — signed up, created, and finalized a live document against a running instance of this exact codebase, not a mockup. Every diagram is a real [Mermaid](https://mermaid.js.org/) rendering of the actual request/data flow in the codebase. No logo asset exists in this repository yet, so there's no wordmark above.
 
 ---
 
@@ -675,11 +675,70 @@ All validation is enforced by `apps/api/src/config/env.ts` (Zod) at process boot
 
 ## 19. Screenshots
 
-No screenshots, GIFs, or a logo file are currently committed to this repository (confirmed: no `*.png`/`*.gif`/`*.jpg` or `logo*` files exist in the tree at the time of writing). To add them:
+All captures below are real — taken against a live instance of this exact codebase (dev servers + an in-memory MongoDB), walking through an actual signup → create → finalize → report flow. No mockups, no fabricated data. Source files live in [`docs/screenshots/`](docs/screenshots/).
 
-1. Capture the dashboard (`/`), the line-items editor (`/documents/new`), a finalized document (`/documents/[id]`), and the reports view (`/reports`).
-2. Save under `docs/screenshots/`.
-3. Replace the placeholder image at the top of this README and add an image grid here.
+<table>
+<tr>
+<td width="50%">
+
+**Sign up**
+<img src="docs/screenshots/01-signup.png" alt="Signup page" width="100%" />
+
+</td>
+<td width="50%">
+
+**Empty dashboard**
+<img src="docs/screenshots/02-dashboard-empty.png" alt="Dashboard with no documents yet" width="100%" />
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+**Line-items editor — live calculation preview**
+<img src="docs/screenshots/03-document-editor-live-preview.png" alt="Document editor with a live-calculating line item and totals panel" width="100%" />
+
+</td>
+<td width="50%">
+
+**Draft document detail**
+<img src="docs/screenshots/04-document-detail-draft.png" alt="Draft document detail view with itemized breakdown" width="100%" />
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+**Finalize confirmation**
+<img src="docs/screenshots/05-finalize-confirm-modal.png" alt="Confirmation modal warning that finalizing permanently locks the document" width="100%" />
+
+</td>
+<td width="50%">
+
+**Finalized document — locked & immutable**
+<img src="docs/screenshots/06-document-detail-finalized.png" alt="Finalized document detail view showing the locked, immutable badge" width="100%" />
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+**Dashboard with data**
+<img src="docs/screenshots/07-dashboard-with-documents.png" alt="Dashboard showing one finalized document and its aggregate metrics" width="100%" />
+
+</td>
+<td width="50%">
+
+**Financial reports**
+<img src="docs/screenshots/08-reports.png" alt="Reports page showing an aggregated date-range summary" width="100%" />
+
+</td>
+</tr>
+</table>
+
+Note the numbers reconcile end to end: a $200.00 subtotal with a 10% discount (−$20.00) and 5% tax on the discounted amount (+$9.00) produces a $189.00 grand total in the editor's live preview, the draft detail view, the finalized detail view, the dashboard, and the reports aggregate — the same authoritative total computed once by `calculateLineItem`/`calculateDocumentTotals` and never recomputed differently by any surface.
+
+No GIF or animated walkthrough is included — only static captures.
 
 ---
 
