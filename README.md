@@ -796,8 +796,19 @@ This is currently a single-maintainer portfolio project without a formalized ext
 6. Open a PR describing the change and, if it affects money handling or the document lifecycle, the specific edge case it addresses.
 
 ---
+## Author
 
+**Habin Rahman**
+
+Software Engineer focused on AI products, developer tools, and production-grade AI systems.
+
+- GitHub: https://github.com/habinrahman
+- LinkedIn: https://www.linkedin.com/in/habinrahman
+
+
+---
 ## 24. License
+
 
 No `LICENSE` file and no `license` field in any `package.json` are currently present in this repository — all packages are marked `"private": true`. Until a license is added, the code is **all rights reserved by default** (standard copyright law applies in the absence of an explicit license). If you intend this project to be open source, add a `LICENSE` file (MIT is a common, permissive default) and a corresponding `license` field to each `package.json`.
 
