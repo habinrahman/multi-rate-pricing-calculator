@@ -1,0 +1,20 @@
+version: 1.0
+runtime: nodejs22
+build:
+  commands:
+    build:
+      - npm ci
+      - npm --workspace @multi-rate/shared run build
+      - npm --workspace @multi-rate/api run build
+run:
+  command: node apps/api/dist/server.js
+  network:
+    port: 4000
+    env: PORT
+  env:
+    - name: NODE_ENV
+      value: production
+    - name: MONGODB_DATABASE
+      value: multi_rate_pricing
+    - name: LOG_LEVEL
+      value: info

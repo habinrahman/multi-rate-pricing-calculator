@@ -1,0 +1,36 @@
+{
+  "name": "multi-rate-pricing-calculator",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "predev": "npm --workspace @multi-rate/shared run build",
+    "dev": "concurrently -n web,api -c cyan,green \"npm run dev:web\" \"npm run dev:api\"",
+    "dev:web": "npm --workspace @multi-rate/web run dev",
+    "dev:api": "npm --workspace @multi-rate/api run dev",
+    "build": "npm --workspace @multi-rate/shared run build && npm --workspace @multi-rate/api run build && npm --workspace @multi-rate/web run build",
+    "lint": "eslint . --max-warnings=0",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "typecheck": "npm --workspace @multi-rate/shared run build && npm --workspace @multi-rate/shared run typecheck && npm --workspace @multi-rate/api run typecheck && npm --workspace @multi-rate/web run typecheck",
+    "test": "npm --workspace @multi-rate/shared run test && npm --workspace @multi-rate/api run test && npm --workspace @multi-rate/web run test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@types/node": "^22.10.2",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.18.0",
+    "eslint-config-next": "^15.1.0",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.20.0"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10"
+  }
+}
